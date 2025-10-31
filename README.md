@@ -130,7 +130,8 @@ EXPOSE 3000
 docker build -t getting-started-app .
 ```
 
-**📸 Reference Screenshot**: `docker_build_console_output.png`
+**📸 Reference Screenshot**:
+![Docker Build Console Output](docker_build_console_output.png)
 
 This screenshot shows the complete build process including:
 
@@ -147,7 +148,8 @@ This screenshot shows the complete build process including:
 docker run -dp 127.0.0.1:3000:3000 getting-started-app
 ```
 
-**📸 Reference Screenshot**: `docker_run_console_output.png`
+**📸 Reference Screenshot**:
+![Docker Run Console Output](docker_run_console_output.png)
 
 #### Step 2: Verify Container is Running
 
@@ -155,7 +157,8 @@ docker run -dp 127.0.0.1:3000:3000 getting-started-app
 docker ps
 ```
 
-**📸 Reference Screenshot**: `docker_ps_for_running_containers.png`
+**📸 Reference Screenshot**:
+![Docker PS for Running Containers](docker_ps_for_running_containers.png)
 
 This screenshot demonstrates:
 
@@ -168,7 +171,8 @@ This screenshot demonstrates:
 
 Open your web browser and navigate to: `http://localhost:3000`
 
-**📸 Reference Screenshot**: `app_running_in_browser.png`
+**📸 Reference Screenshot**:
+![App Running in Browser](app_running_in_browser.png)
 
 This screenshot shows:
 
@@ -185,7 +189,8 @@ This screenshot shows:
 docker network create todo-app
 ```
 
-**📸 Reference Screenshot**: `docker_network_created.png`
+**📸 Reference Screenshot**:
+![Docker Network Created](docker_network_created.png)
 
 This demonstrates:
 
@@ -212,7 +217,8 @@ docker run -d \
 docker volume create todo-mysql-data
 ```
 
-**📸 Reference Screenshot**: `docker_volume_created.png`
+**📸 Reference Screenshot**:
+![Docker Volume Created](docker_volume_created.png)
 
 This screenshot shows:
 
@@ -246,7 +252,8 @@ docker tag getting-started-app YOUR_USERNAME/getting-started-app
 docker push YOUR_USERNAME/getting-started-app
 ```
 
-**📸 Reference Screenshot**: `image_pushed_to_dockerhub.png`
+**📸 Reference Screenshot**:
+![Image Pushed to DockerHub](image_pushed_to_dockerhub.png)
 
 This screenshot demonstrates:
 
@@ -260,7 +267,8 @@ This screenshot demonstrates:
 docker pull YOUR_USERNAME/getting-started-app
 ```
 
-**📸 Reference Screenshot**: `pulled_image_on_docker_lab.png`
+**📸 Reference Screenshot**:
+![Pulled Image on Docker Lab](pulled_image_on_docker_lab.png)
 
 This shows:
 
@@ -302,7 +310,49 @@ docker compose ps
 
 The lab includes comprehensive visual documentation:
 
-| Screenshot                             | Description                               |
+### Lab Environment Setup
+![Docker Lab Instance](docker_lab_instance.png)
+*Lab environment setup and initial state*
+
+### Docker Build Process
+![Docker Build Console Output](docker_build_console_output.png)
+*Complete Docker build process showing layer creation, caching, package installation, and build completion*
+
+### Container Runtime Operations
+![Docker Run Console Output](docker_run_console_output.png)
+*Container startup and runtime information*
+
+### Container Management
+![Docker PS for Running Containers](docker_ps_for_running_containers.png)
+*Active containers listing showing container IDs, image information, port mappings, and status*
+
+### Application Interface
+![App Running in Browser](app_running_in_browser.png)
+*Functional web application interface showing the Todo app with add/remove functionality*
+
+### Docker Networking
+![Docker Network Created](docker_network_created.png)
+*Custom network creation process and configuration*
+
+### Data Persistence
+![Docker Volume Created](docker_volume_created.png)
+*Volume creation for data persistence across container restarts*
+
+### Docker Hub Integration
+![Image Pushed to DockerHub](image_pushed_to_dockerhub.png)
+*Registry push process showing layer uploads and successful publication to Docker Hub*
+
+### Registry Operations
+![Pulled Image on Docker Lab](pulled_image_on_docker_lab.png)
+*Image pull from Docker Hub registry showing layer downloads and verification*
+
+### Cleanup Operations
+![Stop and Remove Containers](stop_and_remove_containers.png)
+*Container cleanup and removal process for lab environment cleanup*
+
+### Quick Reference Table
+
+| Screenshot | Description |
 | -------------------------------------- | ----------------------------------------- |
 | `docker_lab_instance.png`              | Lab environment setup and initial state   |
 | `docker_build_console_output.png`      | Complete Docker build process and output  |
@@ -412,7 +462,8 @@ docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 ```
 
-**📸 Reference Screenshot**: `stop_and_remove_containers.png`
+**📸 Reference Screenshot**:
+![Stop and Remove Containers](stop_and_remove_containers.png)
 
 This screenshot shows:
 
