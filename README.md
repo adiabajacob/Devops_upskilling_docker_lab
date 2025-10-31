@@ -1,20 +1,71 @@
-# Getting Started
+# Docker Lab - Todo Application
 
-This repository is a sample application for users following the getting started guide at https://docs.docker.com/get-started/.
+This repository contains a comprehensive Docker lab demonstrating containerization concepts using a Node.js Todo application. This lab covers Docker fundamentals including building images, running containers, networking, volumes, and Docker Compose.
 
-The application is based on the application from the getting started tutorial at https://github.com/docker/getting-started
+## 📋 Table of Contents
+
+- [Application Overview](#application-overview)
+- [Prerequisites](#prerequisites)
+- [Lab Objectives](#lab-objectives)
+- [Getting Started](#getting-started)
+- [Lab Exercises](#lab-exercises)
+- [Screenshots Documentation](#screenshots-documentation)
+- [Docker Compose Setup](#docker-compose-setup)
+- [Testing the Application](#testing-the-application)
+- [Cleanup](#cleanup)
+- [Troubleshooting](#troubleshooting)
+
+## 🚀 Application Overview
+
+This is a simple Todo application built with:
+
+- **Backend**: Node.js with Express.js framework
+- **Database**: SQLite (development) / MySQL (production)
+- **Frontend**: React.js with Bootstrap styling
+- **Container**: Alpine Linux with Node.js LTS
+
+### Application Features
+
+- Add new todo items
+- Mark items as complete/incomplete
+- Delete todo items
+- Persistent data storage
+- Responsive web interface
+
+## 🔧 Prerequisites
+
+Before starting this lab, ensure you have:
+
+- Docker Desktop installed and running
+- Basic understanding of command line operations
+- Text editor (VS Code recommended)
+- Web browser for testing
+
+## 🎯 Lab Objectives
+
+By completing this lab, you will learn:
+
+1. **Docker Fundamentals**
+
+   - Creating Dockerfiles
+   - Building Docker images
+   - Running containers
+   - Port mapping and networking
 
 2. **Docker Networking**
+
    - Creating custom networks
    - Container-to-container communication
    - Network isolation
 
 3. **Data Persistence**
+
    - Docker volumes
    - Bind mounts
    - Data persistence across container restarts
 
 4. **Multi-Container Applications**
+
    - Docker Compose
    - Service orchestration
    - Environment variables
@@ -36,24 +87,32 @@ ls -la
 ### 2. Examine the Application Structure
 
 ```
-getting-started-app/
-├── src/                    # Application source code
-│   ├── index.js           # Main application entry point
-│   ├── persistence/       # Database layer
-│   ├── routes/           # API endpoints
-│   └── static/           # Frontend assets (HTML, CSS, JS)
-├── spec/                 # Test files
-├── Dockerfile           # Container build instructions
-├── compose.yaml         # Docker Compose configuration
-├── package.json         # Node.js dependencies
-└── README.md           # This documentation
+Docker lab/
+├── getting-started-app/        # Todo application source
+│   ├── src/                   # Application source code
+│   │   ├── index.js          # Main application entry point
+│   │   ├── persistence/      # Database layer
+│   │   ├── routes/           # API endpoints
+│   │   └── static/           # Frontend assets (HTML, CSS, JS)
+│   ├── spec/                 # Test files
+│   ├── Dockerfile            # Container build instructions
+│   ├── compose.yaml          # Docker Compose configuration
+│   └── package.json          # Node.js dependencies
+├── Screenshots/              # Lab documentation screenshots
+└── README.md                # This documentation
 ```
 
 ## 🧪 Lab Exercises
 
 ### Exercise 1: Building Your First Docker Image
 
-#### Step 1: Examine the Dockerfile
+#### Step 1: Navigate to Application Directory
+
+```bash
+cd getting-started-app
+```
+
+#### Step 2: Examine the Dockerfile
 
 ```dockerfile
 # syntax=docker/dockerfile:1
@@ -65,7 +124,7 @@ CMD ["node", "src/index.js"]
 EXPOSE 3000
 ```
 
-#### Step 2: Build the Docker Image
+#### Step 3: Build the Docker Image
 
 ```bash
 docker build -t getting-started-app .
@@ -74,6 +133,7 @@ docker build -t getting-started-app .
 **📸 Reference Screenshot**: `docker_build_console_output.png`
 
 This screenshot shows the complete build process including:
+
 - Layer creation and caching
 - Package installation via yarn
 - Final image creation
@@ -98,6 +158,7 @@ docker ps
 **📸 Reference Screenshot**: `docker_ps_for_running_containers.png`
 
 This screenshot demonstrates:
+
 - Active container listing
 - Container ID and image information
 - Port mappings (127.0.0.1:3000->3000/tcp)
@@ -110,6 +171,7 @@ Open your web browser and navigate to: `http://localhost:3000`
 **📸 Reference Screenshot**: `app_running_in_browser.png`
 
 This screenshot shows:
+
 - Todo application interface
 - Functional web application in browser
 - Add/remove todo functionality working
@@ -126,6 +188,7 @@ docker network create todo-app
 **📸 Reference Screenshot**: `docker_network_created.png`
 
 This demonstrates:
+
 - Network creation command execution
 - Network ID generation
 - Successful network establishment
@@ -152,6 +215,7 @@ docker volume create todo-mysql-data
 **📸 Reference Screenshot**: `docker_volume_created.png`
 
 This screenshot shows:
+
 - Volume creation process
 - Volume name confirmation
 - Successful volume establishment for data persistence
@@ -185,6 +249,7 @@ docker push YOUR_USERNAME/getting-started-app
 **📸 Reference Screenshot**: `image_pushed_to_dockerhub.png`
 
 This screenshot demonstrates:
+
 - Image push process to Docker Hub
 - Layer uploads and progress
 - Successful registry publication
@@ -198,6 +263,7 @@ docker pull YOUR_USERNAME/getting-started-app
 **📸 Reference Screenshot**: `pulled_image_on_docker_lab.png`
 
 This shows:
+
 - Image pull from Docker Hub registry
 - Layer downloads and verification
 - Successful image retrieval
@@ -206,7 +272,8 @@ This shows:
 
 #### Step 1: Examine Docker Compose Configuration
 
-The `compose.yaml` file defines:
+The `getting-started-app/compose.yaml` file defines:
+
 - **App Service**: Node.js application container
 - **MySQL Service**: Database container
 - **Volume**: Persistent data storage
@@ -215,6 +282,7 @@ The `compose.yaml` file defines:
 #### Step 2: Run with Docker Compose
 
 ```bash
+cd getting-started-app
 docker compose up -d
 ```
 
@@ -234,24 +302,24 @@ docker compose ps
 
 The lab includes comprehensive visual documentation:
 
-| Screenshot | Description |
-|------------|-------------|
-| `docker_lab_instance.png` | Lab environment setup and initial state |
-| `docker_build_console_output.png` | Complete Docker build process and output |
-| `docker_run_console_output.png` | Container startup and runtime information |
-| `docker_ps_for_running_containers.png` | Active containers listing and status |
-| `app_running_in_browser.png` | Functional web application in browser |
-| `docker_network_created.png` | Custom network creation and configuration |
-| `docker_volume_created.png` | Volume creation for data persistence |
-| `image_pushed_to_dockerhub.png` | Registry push process and confirmation |
-| `pulled_image_on_docker_lab.png` | Image pull from Docker Hub registry |
-| `stop_and_remove_containers.png` | Container cleanup and removal process |
+| Screenshot                             | Description                               |
+| -------------------------------------- | ----------------------------------------- |
+| `docker_lab_instance.png`              | Lab environment setup and initial state   |
+| `docker_build_console_output.png`      | Complete Docker build process and output  |
+| `docker_run_console_output.png`        | Container startup and runtime information |
+| `docker_ps_for_running_containers.png` | Active containers listing and status      |
+| `app_running_in_browser.png`           | Functional web application in browser     |
+| `docker_network_created.png`           | Custom network creation and configuration |
+| `docker_volume_created.png`            | Volume creation for data persistence      |
+| `image_pushed_to_dockerhub.png`        | Registry push process and confirmation    |
+| `pulled_image_on_docker_lab.png`       | Image pull from Docker Hub registry       |
+| `stop_and_remove_containers.png`       | Container cleanup and removal process     |
 
 ## 🐳 Docker Compose Setup
 
 ### Development Environment
 
-The `compose.yaml` provides a complete development environment:
+The `getting-started-app/compose.yaml` provides a complete development environment:
 
 ```yaml
 services:
@@ -284,6 +352,9 @@ volumes:
 ### Quick Start Commands
 
 ```bash
+# Navigate to app directory
+cd getting-started-app
+
 # Start all services
 docker compose up -d
 
@@ -333,7 +404,7 @@ curl -X DELETE http://localhost:3000/items/1
 ### Stop and Remove Containers
 
 ```bash
-# Using Docker Compose
+# Using Docker Compose (from getting-started-app directory)
 docker compose down
 
 # Manual cleanup
@@ -344,6 +415,7 @@ docker rm $(docker ps -aq)
 **📸 Reference Screenshot**: `stop_and_remove_containers.png`
 
 This screenshot shows:
+
 - Container stopping process
 - Container removal commands
 - System cleanup confirmation
@@ -367,6 +439,7 @@ docker network rm todo-app
 ### Common Issues and Solutions
 
 #### Port Already in Use
+
 ```bash
 # Check what's using port 3000
 netstat -tulpn | grep :3000
@@ -376,6 +449,7 @@ docker run -dp 127.0.0.1:3001:3000 getting-started-app
 ```
 
 #### Container Won't Start
+
 ```bash
 # Check container logs
 docker logs CONTAINER_ID
@@ -385,6 +459,7 @@ docker images | grep getting-started-app
 ```
 
 #### Database Connection Issues
+
 ```bash
 # Verify MySQL container is running
 docker ps | grep mysql
@@ -394,6 +469,7 @@ docker exec -it APP_CONTAINER ping mysql
 ```
 
 #### Volume Mount Problems
+
 ```bash
 # List volumes
 docker volume ls
@@ -435,7 +511,7 @@ This lab provided hands-on experience with:
 ✅ **Data Persistence** - Volumes and bind mounts  
 ✅ **Multi-Container Apps** - Docker Compose orchestration  
 ✅ **Registry Operations** - Pushing and pulling from Docker Hub  
-✅ **Production Deployment** - Best practices and configurations  
+✅ **Production Deployment** - Best practices and configurations
 
 ## 🤝 Contributing
 
